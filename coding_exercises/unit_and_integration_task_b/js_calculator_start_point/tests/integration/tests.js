@@ -29,11 +29,11 @@ describe('calculator functionality', function() {
 
   it('should have a working subtract button', function(){
     running_total = element(by.css('#running_total'));
-    element(by.css('#number7')).click();
+    element(by.css('#number1')).click();
     element(by.css('#operator_subtract')).click();
     element(by.css('#number4')).click();
     element(by.css('#operator_equals')).click();
-    expect(running_total.getAttribute('value')).to.eventually.equal('3');
+    expect(running_total.getAttribute('value')).to.eventually.equal('-3');
   });
 
   it('should have a working multiply button', function(){
@@ -113,13 +113,49 @@ describe('calculator functionality', function() {
       expect(running_total.getAttribute('value')).to.eventually.equal('1000000');
   });
 
-  it('should display "Undefined" when dividing by zero', function(){
+  it('should display "Can\'t divide by 0" when dividing by 0', function(){
       running_total = element(by.css('#running_total'));
       element(by.css('#number1')).click();
       element(by.css('#operator_divide')).click();
       element(by.css('#number0')).click();
       element(by.css('#operator_equals')).click();
-      expect(running_total.getAttribute('value')).to.eventually.equal('Undefined');
+      expect(running_total.getAttribute('value')).to.eventually.equal('Can\'t divide by 0');
+  });
+
+  it('should be able to add to 0', function(){
+      running_total = element(by.css('#running_total'));
+      element(by.css('#number0')).click();
+      element(by.css('#operator_add')).click();
+      element(by.css('#number4')).click();
+      element(by.css('#operator_equals')).click();
+      expect(running_total.getAttribute('value')).to.eventually.equal('4');
+  });
+
+  it('should be able to subtract from 0', function(){
+      running_total = element(by.css('#running_total'));
+      element(by.css('#number0')).click();
+      element(by.css('#operator_subtract')).click();
+      element(by.css('#number4')).click();
+      element(by.css('#operator_equals')).click();
+      expect(running_total.getAttribute('value')).to.eventually.equal('-4');
+  });
+
+  it('should be able to multiply 0', function(){
+      running_total = element(by.css('#running_total'));
+      element(by.css('#number0')).click();
+      element(by.css('#operator_multiply')).click();
+      element(by.css('#number4')).click();
+      element(by.css('#operator_equals')).click();
+      expect(running_total.getAttribute('value')).to.eventually.equal('0');
+  });
+
+  it('should be able to divide 0', function(){
+      running_total = element(by.css('#running_total'));
+      element(by.css('#number0')).click();
+      element(by.css('#operator_divide')).click();
+      element(by.css('#number4')).click();
+      element(by.css('#operator_equals')).click();
+      expect(running_total.getAttribute('value')).to.eventually.equal('0');
   });
 
 });

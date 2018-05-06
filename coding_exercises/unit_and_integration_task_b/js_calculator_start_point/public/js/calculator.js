@@ -20,7 +20,7 @@ Calculator.prototype = {
   },
 
   divide: function(number){
-    this.runningTotal = (number === 0) ? 'Undefined' : parseFloat(this.previousTotal) / parseFloat(number);
+    this.runningTotal = (number == 0) ? 'Can\'t divide by 0' : parseFloat(this.previousTotal) / parseFloat(number);
   },
 
   numberClick: function(number) {
@@ -42,7 +42,7 @@ Calculator.prototype = {
 
     // if there was a previous operator recorded as having been clicked, perform
     // the operation for the previous operator
-    if (this.previousTotal && this.previousOperator) {
+    if ((this.previousTotal != null) && this.previousOperator) {
       switch (this.previousOperator) {
         case ('+'):
         this.add(this.runningTotal);
